@@ -1,0 +1,26 @@
+{
+  "name": "@fdy/censusapi2csv",
+  "version": "1.0.0",
+  "description": "A tool for downloading Census/ACS data from the API and parsing to CSV",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/faradayio/censusapi2csv.git"
+  },
+  "author": "bill@faraday.io",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/faradayio/censusapi2csv/issues"
+  },
+  "bin": {
+    "censusapi2csv": "index.js"
+  },
+  "homepage": "https://github.com/faradayio/censusapi2csv#readme",
+  "dependencies": {
+    "command-line-args": "^4.0.7",
+    "request": "^2.83.0"
+  }
+}
