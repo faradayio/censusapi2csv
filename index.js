@@ -11,7 +11,8 @@ let optionDefinitions = [
   { name: 'county', alias: 'c', type: String },
   { name: 'out', alias: 'o', type: String },
   { name: 'year', alias: 'y', type: String, defaultValue: '2015' },
-  { name: 'fields', alias: 'f', type: String }
+  { name: 'fields', alias: 'f', type: String },
+  { name: 'key', alias: 'k', type: String }
 ]
 
 function parseFields(f) {
@@ -28,6 +29,7 @@ let options = commandLineArgs(optionDefinitions)
 let year = options.year
 let fields = parseFields(options.fields)
 let inArgs = ''
+let apiKey = ''
 if (options.state && !options.county) {
   inArgs = '&in=state:' + options.state
 } else if (options.state && options.county) {
@@ -36,7 +38,11 @@ if (options.state && !options.county) {
   console.log('Please specify a state FIPS code using the -s argument')
 }
 
-let requestUrl = 'https://api.census.gov/data/2015/acs5?get=' + fields + '&for=' + options.level + ':*' + inArgs
+if (options.key) {
+  apiKey = '&key=' + options.key
+}
+
+let requestUrl = 'https://api.census.gov/data/2015/acs5?get=' + fields + '&for=' + options.level + ':*' + inArgs + apiKey
 
 
 request(requestUrl, function (error, response, body) {

@@ -1,6 +1,6 @@
 {
   "name": "censusapi2csv",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "A tool for downloading Census/ACS data from the API and parsing to CSV",
   "main": "index.js",
   "scripts": {
