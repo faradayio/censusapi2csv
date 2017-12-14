@@ -51,7 +51,7 @@ request(requestUrl, function (error, response, body) {
   } else if (!error && response.statusCode == 200) {
     let payload = JSON.parse(body)
     if (options.out) {
-      fs.writeFileSync('acs_' + year + '_' + options.fields.split(',').join('_') + '_' + options.level + '.csv' )
+      fs.writeFileSync(options.out, payload.map(row => row.join(',')).join('\n'))
     } else {
       console.log(payload.map(row => row.join(',')).join('\n'))
     }
