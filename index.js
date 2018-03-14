@@ -8,6 +8,7 @@ let commandLineArgs = require('command-line-args')
 let optionDefinitions = [
   { name: 'level', alias: 'l', type: String, defaultValue: 'zip%20code%20tabulation%20area' },
   { name: 'state', alias: 's', type: String },
+  { name: 'endpoint', alias: 'e', type: String, defaultValue: 'acs' },
   { name: 'county', alias: 'c', type: String },
   { name: 'out', alias: 'o', type: String },
   { name: 'year', alias: 'y', type: String, defaultValue: '2015' },
@@ -27,9 +28,11 @@ function parseFields(f) {
 let options = commandLineArgs(optionDefinitions)
 
 let year = options.year
-let fields = parseFields(options.fields)
+let endpoint = options.endpoint
 let inArgs = ''
 let apiKey = ''
+let endpointUrl = ''
+let fields = ''
 if (options.state && !options.county) {
   inArgs = '&in=state:' + options.state
 } else if (options.state && options.county) {
@@ -42,7 +45,15 @@ if (options.key) {
   apiKey = '&key=' + options.key
 }
 
-let requestUrl = 'https://api.census.gov/data/2015/acs5?get=' + fields + '&for=' + options.level + ':*' + inArgs + apiKey
+if (options.endpoint === 'acs') {
+  endpointUrl = '2015/acs'
+  fields = parseFields(options.fields)
+} else if (options.endpoint === 'dc') {
+  endpointUrl = '2010/sf1'
+  fields = options.fields
+}
+
+let requestUrl = 'https://api.census.gov/data/' + endpointUrl + '?get=' + fields + '&for=' + options.level + ':*' + inArgs + apiKey
 
 
 request(requestUrl, function (error, response, body) {
