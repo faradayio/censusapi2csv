@@ -50,7 +50,7 @@ if (options.key) {
 }
 
 if (options.endpoint === 'acs') {
-  endpointUrl = '2015/acs1'
+  endpointUrl = '2015/acs5'
   fields = parseFields(options.fields)
 } else if (options.endpoint === 'dc') {
   endpointUrl = '2010/sf1'
@@ -58,7 +58,7 @@ if (options.endpoint === 'acs') {
 }
 
 let requestUrl = 'https://api.census.gov/data/' + endpointUrl + '?get=' + fields + '&for=' + options.level + ':*' + inArgs + apiKey
-
+console.log(requestUrl)
 request(requestUrl, function (error, response, body) {
   if (error) {
     console.log(error)
