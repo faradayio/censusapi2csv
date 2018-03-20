@@ -20,7 +20,11 @@ function parseFields(f) {
   let fieldsArray = f.split(',')
   let parsedFields = []
   for (let i = 0; i < fieldsArray.length; i++) {
-    parsedFields.push(fieldsArray[i] + '_001E')
+    if (fieldsArray[i].length == 6 ) {
+      parsedFields.push(fieldsArray[i] + '_001E')
+    } else {
+      parsedFields.push(fieldsArray[i])
+    }
   }
   return parsedFields.join(',')
 }
@@ -46,7 +50,7 @@ if (options.key) {
 }
 
 if (options.endpoint === 'acs') {
-  endpointUrl = '2015/acs'
+  endpointUrl = '2015/acs1'
   fields = parseFields(options.fields)
 } else if (options.endpoint === 'dc') {
   endpointUrl = '2010/sf1'
@@ -54,7 +58,6 @@ if (options.endpoint === 'acs') {
 }
 
 let requestUrl = 'https://api.census.gov/data/' + endpointUrl + '?get=' + fields + '&for=' + options.level + ':*' + inArgs + apiKey
-
 
 request(requestUrl, function (error, response, body) {
   if (error) {
