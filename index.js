@@ -6,7 +6,7 @@ let request = require('request')
 let commandLineArgs = require('command-line-args')
  
 let optionDefinitions = [
-  { name: 'level', alias: 'l', type: String, defaultValue: 'zip%20code%20tabulation%20area' },
+  { name: 'level', alias: 'l', type: String, defaultValue: 'state' },
   { name: 'state', alias: 's', type: String },
   { name: 'endpoint', alias: 'e', type: String, defaultValue: 'acs' },
   { name: 'county', alias: 'c', type: String },
@@ -50,14 +50,20 @@ if (options.key) {
 }
 
 if (options.endpoint === 'acs') {
-  endpointUrl = '2015/acs5'
+  endpointUrl = 'acs5'
   fields = parseFields(options.fields)
 } else if (options.endpoint === 'dc') {
-  endpointUrl = '2010/sf1'
-  fields = options.fields
+  endpointUrl = 'sf1'
+  if (year === '2000' || year === '2010') {
+    year = options.year
+    fields = options.fields
+  } else {
+    console.log('Please specify a valid Census year (multiples of 10, yo)')
+    process.exit(1);
+  }
 }
 
-let requestUrl = 'https://api.census.gov/data/' + endpointUrl + '?get=' + fields + '&for=' + options.level + ':*' + inArgs + apiKey
+let requestUrl = 'https://api.census.gov/data/' + year + '/' + endpointUrl + '?get=' + fields + '&for=' + options.level + ':*' + inArgs + apiKey
 
 request(requestUrl, function (error, response, body) {
   if (error) {
