@@ -11,7 +11,7 @@ let optionDefinitions = [
   { name: 'endpoint', alias: 'e', type: String, defaultValue: 'acs' },
   { name: 'county', alias: 'c', type: String },
   { name: 'out', alias: 'o', type: String },
-  { name: 'year', alias: 'y', type: String, defaultValue: '2015' },
+  { name: 'year', alias: 'y', type: String, defaultValue: '2017' },
   { name: 'fields', alias: 'f', type: String },
   { name: 'key', alias: 'k', type: String }
 ]
@@ -50,10 +50,10 @@ if (options.key) {
 }
 
 if (options.endpoint === 'acs') {
-  endpointUrl = 'acs5'
+  endpointUrl = 'acs/acs5'
   fields = parseFields(options.fields)
 } else if (options.endpoint === 'dc') {
-  endpointUrl = 'sf1'
+  endpointUrl = 'dec/sf1'
   if (year === '2000' || year === '2010') {
     year = options.year
     fields = options.fields

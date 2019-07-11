@@ -15,7 +15,7 @@ A tool for downloading Census/ACS data from the API and parsing to CSV
 * `-k, --key` (_OPTIONAL_) Census [API key](https://api.census.gov/data/key_signup.html) (limited use without one)
 * `-s, --state` (_OPTIONAL_) FIPS code of a state to which you want the request restricted (e.g. '06' = California)
 * `-c, --county` (_OPTIONAL_) FIPS code of a county to which you want the request restricted (e.g. '007' = Chittenden county, within Vermont)
-* `-y, --year` (_OPTIONAL_) Census or ACS year (defaults: Census = `2010`, ACS = `2015`) - (_Extra parenthetical notes on Census 2000: ZCTA level is not supported, and [there's a different suite of codes](https://api.census.gov/data/2000/sf1/variables.html)_)
+* `-y, --year` (_OPTIONAL_) Census or ACS year (defaults: Census = `2010`, ACS = `2017`) - (_Extra parenthetical notes on Census 2000: ZCTA level is not supported, and [there's a different suite of codes](https://api.census.gov/data/2000/sf1/variables.html)_)
 
 ### Notes
 * Some request levels must be restricted by state or county. For example, the `block group` level will only be returned if both state and county are specified
