@@ -8,7 +8,7 @@ A tool for downloading Census/ACS data from the API and parsing to CSV
 `censusapi2csv -f <census field codes>`
 
 ### Arguments
-* `-f, --fields` (_REQUIRED_) Comma-separated list of [desired ACS fields](https://api.census.gov/data/2015/acs/acs5/variables.html) or [decennial census fields](https://api.census.gov/data/2010/sf1/variables.html) (e.g. `B01001` = Total population)
+* `-f, --fields` (_REQUIRED_) Comma-separated list of [desired ACS fields](https://api.census.gov/data/2017/acs/acs5/variables.html) or [decennial census fields](https://api.census.gov/data/2010/sf1/variables.html) (e.g. `B01001` = Total population)
 * `-e, --endpoint` (_OPTIONAL_) Desired endpoint, one of `acs` (American Community Survey) or `dc` (Decennial Census); default = `acs`
 * `-l, --level` (_OPTIONAL_) Geographic level of desired results, one of `state`, `county`, `place`, `county subdivision`, `zip code tabulation area`, `tract`, `block group`, or `block`. (default: 'state')
 * `-o, --out` (_OPTIONAL_) Output filename and path if desired. Default is to STDOUT.

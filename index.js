@@ -64,7 +64,7 @@ if (options.endpoint === 'acs') {
 }
 
 let requestUrl = 'https://api.census.gov/data/' + year + '/' + endpointUrl + '?get=' + fields + '&for=' + options.level + ':*' + inArgs + apiKey
-
+//console.log(requestUrl)
 request(requestUrl, function (error, response, body) {
   if (error) {
     console.log(error)
